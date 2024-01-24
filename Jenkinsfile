@@ -44,7 +44,7 @@ pipeline {
                                         remoteDirectory: '/home/Dhanush/dummy',
                                         remoteDirectorySDF: false,
                                         removePrefix: 'build/',
-                                        sourceFiles: 'C:\Users\Amit.Tiwari\OneDrive - Tolaram Corporation Pte Ltd\Desktop\dummy\my-react-app\build'
+                                        sourceFiles: 'C:/Users/Amit.Tiwari/OneDrive - Tolaram Corporation Pte Ltd/Desktop/dummy/my-react-app/build/**/*'
                                     )
                                 ],
                                 usePromotionTimestamp: false,
