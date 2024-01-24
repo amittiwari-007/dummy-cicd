@@ -22,6 +22,40 @@ pipeline {
                 bat 'npm run build'
             }
         }
+
+        stage('Deploy to Azure VM') {
+            steps {
+                script {
+                    // Use SSH to copy artifacts to Azure VM
+                    sshPublisher(
+                        publishers: [
+                            sshPublisherDesc(
+                                configName: 'Dummy',
+                                transfers: [
+                                    sshTransfer(
+                                        cleanRemote: true,
+                                        excludes: '',
+                                        execCommand: '',
+                                        execTimeout: 120000,
+                                        flatten: false,
+                                        makeEmptyDirs: false,
+                                        noDefaultExcludes: false,
+                                        patternSeparator: '[, ]+',
+                                        remoteDirectory: '/home/Dhanush/dummy',
+                                        remoteDirectorySDF: false,
+                                        removePrefix: 'build/',
+                                        sourceFiles: 'build/**/*'
+                                    )
+                                ],
+                                usePromotionTimestamp: false,
+                                useWorkspaceInPromotion: false,
+                                verbose: true
+                            )
+                        ]
+                    )
+                }
+            }
+        }
         
     }
 }
