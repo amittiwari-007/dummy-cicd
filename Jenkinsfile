@@ -41,7 +41,7 @@ pipeline {
                                         makeEmptyDirs: false,
                                         noDefaultExcludes: false,
                                         patternSeparator: '[, ]+',
-                                        remoteDirectory: '/home/Dhanush/dummy',
+                                        remoteDirectory: '/root/home/Dhanush/dummy/',
                                         remoteDirectorySDF: false,
                                         removePrefix: 'build/',
                                         sourceFiles: 'C:/Users/Amit.Tiwari/OneDrive - Tolaram Corporation Pte Ltd/Desktop/dummy/my-react-app/build/**/*'
