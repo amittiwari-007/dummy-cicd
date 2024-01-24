@@ -26,33 +26,15 @@ pipeline {
         stage('Deploy to Azure VM') {
             steps {
                 script {
-                    // Use SSH to copy artifacts to Azure VM
-                    sshPublisher(
-                        publishers: [
-                            sshPublisherDesc(
-                                configName: 'Dummy',
-                                transfers: [
-                                    sshTransfer(
-                                        cleanRemote: true,
-                                        excludes: '',
-                                        execCommand: '',
-                                        execTimeout: 120000,
-                                        flatten: false,
-                                        makeEmptyDirs: false,
-                                        noDefaultExcludes: false,
-                                        patternSeparator: '[, ]+',
-                                        remoteDirectory: '/root/home/Dhanush/dummy/',
-                                        remoteDirectorySDF: false,
-                                        removePrefix: 'build/',
-                                        sourceFiles: 'C:/Users/Amit.Tiwari/OneDrive - Tolaram Corporation Pte Ltd/Desktop/dummy/my-react-app/build'
-                                    )
-                                ],
-                                usePromotionTimestamp: false,
-                                useWorkspaceInPromotion: false,
-                                verbose: true
-                            )
-                        ]
-                    )
+                     def remoteHost = '192.168.1.6'
+                def remoteUser = 'root'
+                def remotePwd = '6P@ssw0rd6'
+                def remoteDir = '/root/home/Dhanush/dummy/'
+                
+                // Copy the build files to the Azure VM using SSH
+                sshagent(credentials: ['53cb2187-df50-4e1c-aa30-2b30bcfa6eca']) {
+                    sh "scp -o StrictHostKeyChecking=no -r build/* ${remoteUser}@${remoteHost}:${remoteDir}"
+                }
                 }
             }
         }
