@@ -33,7 +33,11 @@ pipeline {
                 
                 // Copy the build files to the Azure VM using SSH
                 sshagent(credentials: ['53cb2187-df50-4e1c-aa30-2b30bcfa6eca']) {
-                    sh "scp -o StrictHostKeyChecking=no -r build/* ${remoteUser}@${remoteHost}:${remoteDir}"
+                    sh """
+        ssh-add -L
+        ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p ${remotePort} ${remoteUser}@${remoteHost} "echo Successfully connected"
+        scp -o StrictHostKeyChecking=no -r build/* ${remoteUser}@${remoteHost}:${remoteDir}
+    """
                 }
                 }
             }
