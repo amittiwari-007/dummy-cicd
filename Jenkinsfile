@@ -32,9 +32,9 @@ pipeline {
                 def remotePwd = '6P@ssw0rd6'
                 def remoteDir = '/root/home/Dhanush/dummy/'
                 
-                echo "yaha"
+                echo "outside"
                 sshagent(credentials: ['C:/ProgramData/Jenkins/jenkins_ssh_key']) {
-                    
+                    echo "inside"
                     sh """
         ssh-add -L
         ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p ${remotePort} ${remoteUser}@${remoteHost} "echo Successfully connected"
