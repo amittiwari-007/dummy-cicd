@@ -33,7 +33,7 @@ pipeline {
                 def remoteDir = '/root/home/Dhanush/dummy/'
                 
                 echo "yaha"
-                sshagent(credentials: [root]) {
+                sshagent(credentials: [Dummy]) {
                     
                     sh """
         ssh-add -L
