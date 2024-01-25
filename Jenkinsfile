@@ -32,9 +32,9 @@ pipeline {
                 def remotePwd = '6P@ssw0rd6'
                 def remoteDir = '/root/home/Dhanush/dummy/'
                 
-                // Copy the build files to the Azure VM using SSH
+                echo "yaha"
                 sshagent(credentials: ['53cb2187-df50-4e1c-aa30-2b30bcfa6eca']) {
-                    echo "yaha"
+                    
                     sh """
         ssh-add -L
         ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p ${remotePort} ${remoteUser}@${remoteHost} "echo Successfully connected"
