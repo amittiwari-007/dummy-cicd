@@ -25,7 +25,7 @@ pipeline {
             steps {
                 bat 'npm run build'
                 echo "builded"
-                archiveArtifacts 'build/**'
+                archiveArtifacts 'dist/**'
             }
         }
 
