@@ -29,13 +29,18 @@ pipeline {
             }
         }
 
-        // stage('Debug') {
-        //     steps {
-        //         script {
-        //             bat 'dir /s /b'
-        //         }
-        //     }
-        // }
+        stage('Debug') {
+            steps {
+                script {
+    echo "Workspace: ${WORKSPACE}"
+    echo "Contents of dist directory: "
+    sh 'ls -la dist'
+    sh 'echo "Files in dist directory: " && find dist -type f'
+    sh 'echo "Directories in dist directory: " && find dist -type d'
+}
+
+            }
+        }
 
 
         stage('Deploy to Azure VM') {
