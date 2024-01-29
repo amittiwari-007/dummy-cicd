@@ -29,6 +29,15 @@ pipeline {
             }
         }
 
+        stage('Debug') {
+    steps {
+        script {
+            sh 'ls -R'
+        }
+    }
+}
+
+
         stage('Deploy to Azure VM') {
             steps {
                 script {
