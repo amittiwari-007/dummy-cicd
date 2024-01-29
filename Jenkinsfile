@@ -33,7 +33,8 @@ pipeline {
                 def remoteDir = '/root/home/Dhanush/dummy/'
                 
                 echo "outside"
-                sshagent(['ssh-key']) {
+                    withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key')]) {
+                // sshagent(['ssh-key']) {
                     echo "inside"
                     sh """
         ssh-add -L
