@@ -25,7 +25,7 @@ pipeline {
             steps {
                 bat 'npm run build'
                 echo "builded"
-                // archiveArtifacts 'dist/**'
+                archiveArtifacts 'C:/ProgramData/Jenkins/.jenkins/workspace/dummy-cicd/dist/**'
             }
         }
 
