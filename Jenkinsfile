@@ -55,7 +55,7 @@ pipeline {
                     withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key', keyFileVariable: 'SSH_KEY')]) {
                         echo "inside"
                         echo "SSH_KEY: ${SSH_KEY}"
-                        bat 'scp -r -i %SSH_KEY% %WORKSPACE%\\dist\\* root@192.168.1.6:/root/home/Dhanush/dummy'
+                       // bat 'scp -r -i %SSH_KEY% %WORKSPACE%\\dist\\* root@192.168.1.6:/root/home/Dhanush/dummy'
                     }
                 
                 }
