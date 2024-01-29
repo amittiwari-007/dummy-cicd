@@ -32,12 +32,17 @@ pipeline {
         stage('Debug') {
             steps {
                 script {
-    echo "Workspace: ${WORKSPACE}"
-    echo "Contents of dist directory: "
-    sh 'ls -la dist'
-    sh 'echo "Files in dist directory: " && find dist -type f'
-    sh 'echo "Directories in dist directory: " && find dist -type d'
-}
+    // echo "Workspace: ${WORKSPACE}"
+    // echo "Contents of dist directory: "
+    // sh 'ls -la dist'
+    // sh 'echo "Files in dist directory: " && find dist -type f'
+    // sh 'echo "Directories in dist directory: " && find dist -type d'
+                    bat 'echo Workspace: %WORKSPACE%'
+                    bat 'echo Contents of dist directory: '
+                    bat 'dir dist'
+                    bat 'echo Files in dist directory: && dir /B /A-D /S dist'
+                    bat 'echo Directories in dist directory: && dir /B /A:D /S dist' 
+                }
 
             }
         }
