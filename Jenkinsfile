@@ -2,7 +2,7 @@ pipeline {
     agent any
 
      environment {
-        SSH_KEY = credentials('your-ssh-credentials-id')
+        SSH_KEY = credentials('ssh-key')
     }
 
     stages {
