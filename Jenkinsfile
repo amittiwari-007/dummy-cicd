@@ -25,17 +25,17 @@ pipeline {
             steps {
                 bat 'npm run build'
                 echo "builded"
-                archiveArtifacts 'dist/**'
+                // archiveArtifacts 'dist/**'
             }
         }
 
         stage('Debug') {
-    steps {
-        script {
-            sh 'ls -R'
+            steps {
+                script {
+                    sh 'ls -R'
+                }
+            }
         }
-    }
-}
 
 
         stage('Deploy to Azure VM') {
