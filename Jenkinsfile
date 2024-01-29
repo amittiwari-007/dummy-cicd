@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+     environment {
+        SSH_KEY = credentials('your-ssh-credentials-id')
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -33,11 +37,11 @@ pipeline {
                 def remoteDir = '/root/home/Dhanush/dummy/'
                 
                 echo "outside"
-                   withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key', keyFileVariable: 'SSH_KEY')]) {
-                // sshagent(['ssh-key']) {
-                    echo "inside"
-                     sh "scp -r -i $SSH_KEY build/* root@192.168.1.6:/root/home/Dhanush/dummy"
-                }
+                    withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key', keyFileVariable: 'SSH_KEY')]) {
+                        echo "inside"
+                        sh 'scp -r -i $SSH_KEY build/* root@192.168.1.6:/root/home/Dhanush/dummy'
+                    }
+                
                 }
             }
         }
