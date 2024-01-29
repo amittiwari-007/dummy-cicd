@@ -33,7 +33,7 @@ pipeline {
                 def remoteDir = '/root/home/Dhanush/dummy/'
                 
                 echo "outside"
-                sshagent(['5823f776-71c3-453b-bd45-9a2514aee17c']) {
+                sshagent(['root']) {
                     echo "inside"
                     sh """
         ssh-add -L
