@@ -32,7 +32,7 @@ pipeline {
         stage('Debug') {
             steps {
                 script {
-                    sh 'ls -R'
+                    bat 'dir /s /b'
                 }
             }
         }
