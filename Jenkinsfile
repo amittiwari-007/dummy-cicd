@@ -36,12 +36,7 @@ pipeline {
                    withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key', keyFileVariable: 'SSH_KEY')]) {
                 // sshagent(['ssh-key']) {
                     echo "inside"
-                    sh """
-        ssh-add -L
-        ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p ${remotePort} ${remoteUser}@${remoteHost} "echo Successfully connected"
-        scp -o StrictHostKeyChecking=no -r build/* ${remoteUser}@${remoteHost}:${remoteDir}
-
-    """
+                     sh "scp -r -i $SSH_KEY build/* root@192.168.1.6:/root/home/Dhanush/dummy"
                 }
                 }
             }
