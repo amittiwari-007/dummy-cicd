@@ -29,13 +29,13 @@ pipeline {
             }
         }
 
-        stage('Debug') {
-            steps {
-                script {
-                    bat 'dir /s /b'
-                }
-            }
-        }
+        // stage('Debug') {
+        //     steps {
+        //         script {
+        //             bat 'dir /s /b'
+        //         }
+        //     }
+        // }
 
 
         stage('Deploy to Azure VM') {
