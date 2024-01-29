@@ -49,7 +49,7 @@ pipeline {
                 echo "outside"
                     withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key', keyFileVariable: 'SSH_KEY')]) {
                         echo "inside"
-                        sh 'scp -r -i $SSH_KEY dist/* root@192.168.1.6:/root/home/Dhanush/dummy'
+                        sh 'scp -r -i $SSH_KEY C:/ProgramData/Jenkins/.jenkins/workspace/dummy-cicd/dist/* root@192.168.1.6:/root/home/Dhanush/dummy'
                     }
                 
                 }
