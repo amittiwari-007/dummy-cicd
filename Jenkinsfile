@@ -29,23 +29,18 @@ pipeline {
             }
         }
 
-        stage('Debug') {
-            steps {
-                script {
-    // echo "Workspace: ${WORKSPACE}"
-    // echo "Contents of dist directory: "
-    // sh 'ls -la dist'
-    // sh 'echo "Files in dist directory: " && find dist -type f'
-    // sh 'echo "Directories in dist directory: " && find dist -type d'
-                    bat 'echo Workspace: %WORKSPACE%'
-                    bat 'echo Contents of dist directory: '
-                    bat 'dir dist'
-                    bat 'echo Files in dist directory: && dir /B /A-D /S dist'
-                    bat 'echo Directories in dist directory: && dir /B /A:D /S dist' 
-                }
+        // stage('Debug') {
+        //     steps {
+        //         script {
+        //             bat 'echo Workspace: %WORKSPACE%'
+        //             bat 'echo Contents of dist directory: '
+        //             bat 'dir dist'
+        //             bat 'echo Files in dist directory: && dir /B /A-D /S dist'
+        //             bat 'echo Directories in dist directory: && dir /B /A:D /S dist' 
+        //         }
 
-            }
-        }
+        //     }
+        // }
 
 
         stage('Deploy to Azure VM') {
@@ -59,7 +54,7 @@ pipeline {
                 echo "outside"
                     withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key', keyFileVariable: 'SSH_KEY')]) {
                         echo "inside"
-                        sh 'scp -r -i $SSH_KEY dist/* root@192.168.1.6:/root/home/Dhanush/dummy'
+                        sh 'scp -r -i $SSH_KEY %WORKSPACE%\\dist\\* root@192.168.1.6:/root/home/Dhanush/dummy'
                     }
                 
                 }
