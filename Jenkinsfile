@@ -1,9 +1,10 @@
 pipeline {
     agent any
 
-    //  environment {
-    //     SSH_KEY = credentials('ssh')
-    // }
+     environment {
+        // SSH_KEY = credentials('ssh')
+        SSH_PRIVATE_KEY_PATH = 'C:/Users/Amit.Tiwari/.ssh/id_ed25519'
+    }
 
     stages {
         stage('Checkout') {
@@ -40,8 +41,9 @@ pipeline {
                 echo "outside"
                    withCredentials([sshUserPrivateKey(credentialsId: 'ssh', keyFileVariable: 'SSH_KEY')]) {
                         echo "inside"
+                        echo "SSH_PRIVATE_KEY_PATH: ${env.SSH_PRIVATE_KEY_PATH}"
                         echo "SSH_KEY: ${SSH_KEY}"
-                        bat 'scp -r -B -i C:/Users/Amit.Tiwari/.ssh/id_ed25519 %WORKSPACE%\\dist\\* root@192.168.1.6:/home/Dhanush/dummy'
+                        bat 'scp -r -B -i ${env.SSH_PRIVATE_KEY_PATH} %WORKSPACE%\\dist\\* root@192.168.1.6:/home/Dhanush/dummy'
                     echo "done bhai connect to ho hi gaya "
                    }
                 
