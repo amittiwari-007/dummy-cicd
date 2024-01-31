@@ -55,7 +55,7 @@ pipeline {
                    // withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key', keyFileVariable: 'SSH_KEY')]) {
                         echo "inside"
                         echo "SSH_KEY: ${SSH_KEY}"
-                        bat 'scp -r -B -i %SSH_KEY% %WORKSPACE%\\dist\\* root@192.168.1.6:/home/Dhanush/dummy'
+                        bat 'scp -r -o StrictHostKeyChecking=no -B -i %SSH_KEY% %WORKSPACE%\\dist\\* root@192.168.1.6:/home/Dhanush/dummy'
                     echo "done bhai connect to ho hi gaya "
                   //  }
                 
